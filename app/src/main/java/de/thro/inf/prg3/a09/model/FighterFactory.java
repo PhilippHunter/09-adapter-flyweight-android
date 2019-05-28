@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import de.thro.inf.prg3.a09.R;
@@ -24,6 +26,7 @@ public class FighterFactory {
     private final Random random;
     private final Context context;
     private final NameGenerator nameGenerator;
+    private Map<Integer, BitmapDrawable> flyweights = new HashMap<>();
 
     public FighterFactory(Context context) {
         this.context = context;
@@ -49,6 +52,11 @@ public class FighterFactory {
     }
 
     private Drawable loadImage(int imageId) {
-        return new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), imageId));
+        if (flyweights.containsKey(imageId))
+            return flyweights.get(imageId);
+
+        BitmapDrawable img = new BitmapDrawable(context.getResources(), BitmapFactory.decodeResource(context.getResources(), imageId));
+        flyweights.put(imageId,img);
+        return img;
     }
 }

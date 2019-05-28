@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import de.thro.inf.prg3.a09.model.Flyweight.Flyweight;
+
 /**
  * @author Peter Kurfer
  */
